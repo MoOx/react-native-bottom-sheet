@@ -1,0 +1,1 @@
+{"version":3,"names":["DEFAULT_STACK_BEHAVIOR","DEFAULT_ENABLE_DISMISS_ON_CLOSE"],"sources":["constants.ts"],"sourcesContent":["const DEFAULT_STACK_BEHAVIOR = 'replace';\nconst DEFAULT_ENABLE_DISMISS_ON_CLOSE = true;\n\nexport { DEFAULT_STACK_BEHAVIOR, DEFAULT_ENABLE_DISMISS_ON_CLOSE };\n"],"mappings":";;;;;;AAAA,MAAMA,sBAAsB,GAAG,SAA/B;;AACA,MAAMC,+BAA+B,GAAG,IAAxC"}

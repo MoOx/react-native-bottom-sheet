@@ -1,0 +1,1 @@
+{"version":3,"names":[],"sources":["types.ts"],"sourcesContent":["import type { TextInputProps } from 'react-native';\n\nexport interface BottomSheetTextInputProps extends TextInputProps {}\n"],"mappings":""}

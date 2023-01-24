@@ -1,0 +1,1 @@
+{"version":3,"names":["TouchableOpacity","TouchableHighlight","TouchableWithoutFeedback"],"sources":["Touchables.ios.tsx"],"sourcesContent":["export {\n  TouchableOpacity,\n  TouchableHighlight,\n  TouchableWithoutFeedback,\n} from 'react-native';\n"],"mappings":"AAAA,SACEA,gBADF,EAEEC,kBAFF,EAGEC,wBAHF,QAIO,cAJP"}

@@ -1,0 +1,1 @@
+{"version":3,"names":["default"],"sources":["index.ts"],"sourcesContent":["export { default } from './BottomSheetBackground';\nexport type { BottomSheetBackgroundProps } from './types';\n"],"mappings":"AAAA,SAASA,OAAT,QAAwB,yBAAxB"}
