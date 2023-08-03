@@ -86,15 +86,18 @@ const BottomSheetBackdropComponent = ({
   //#endregion
 
   //#region styles
-  const containerAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      animatedIndex.value,
-      [-1, disappearsOnIndex, appearsOnIndex],
-      [0, 0, opacity],
-      Extrapolate.CLAMP
-    ),
-    flex: 1,
-  }));
+  const containerAnimatedStyle = useAnimatedStyle(
+    () => ({
+      opacity: interpolate(
+        animatedIndex.value,
+        [-1, disappearsOnIndex, appearsOnIndex],
+        [0, 0, opacity],
+        Extrapolate.CLAMP
+      ),
+      flex: 1,
+    }),
+    [animatedIndex, appearsOnIndex, disappearsOnIndex, opacity]
+  );
   const containerStyle = useMemo(
     () => [styles.container, style, containerAnimatedStyle],
     [style, containerAnimatedStyle]

@@ -68,7 +68,7 @@ export function createBottomSheetScrollableComponent<T, P>(
           ? animatedScrollableState.value === SCROLLABLE_STATE.UNLOCKED
           : showsVerticalScrollIndicator,
       }),
-      [showsVerticalScrollIndicator]
+      [animatedScrollableState, showsVerticalScrollIndicator]
     );
 
     const nativeGesture = useMemo(
@@ -88,7 +88,7 @@ export function createBottomSheetScrollableComponent<T, P>(
           ? animatedFooterHeight.value
           : 0,
       }),
-      [enableFooterMarginAdjustment]
+      [animatedFooterHeight, enableFooterMarginAdjustment]
     );
     const containerStyle = useMemo(() => {
       return enableFooterMarginAdjustment

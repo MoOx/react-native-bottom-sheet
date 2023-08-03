@@ -89,15 +89,19 @@ const MapExample = () => {
   const animatedPOIDetailsIndex = useSharedValue<number>(0);
   const animatedPOIDetailsPosition = useSharedValue<number>(SCREEN_HEIGHT);
 
-  const weatherAnimatedIndex = useDerivedValue(() =>
-    animatedPOIListIndex.value > animatedPOIDetailsIndex.value
-      ? animatedPOIListIndex.value
-      : animatedPOIDetailsIndex.value
+  const weatherAnimatedIndex = useDerivedValue(
+    () =>
+      animatedPOIListIndex.value > animatedPOIDetailsIndex.value
+        ? animatedPOIListIndex.value
+        : animatedPOIDetailsIndex.value,
+    [animatedPOIDetailsIndex, animatedPOIListIndex]
   );
-  const weatherAnimatedPosition = useDerivedValue(() =>
-    animatedPOIListPosition.value < animatedPOIDetailsPosition.value
-      ? animatedPOIListPosition.value
-      : animatedPOIDetailsPosition.value
+  const weatherAnimatedPosition = useDerivedValue(
+    () =>
+      animatedPOIListPosition.value < animatedPOIDetailsPosition.value
+        ? animatedPOIListPosition.value
+        : animatedPOIDetailsPosition.value,
+    [animatedPOIDetailsPosition, animatedPOIListPosition]
   );
   //#endregion
 
@@ -116,9 +120,12 @@ const MapExample = () => {
   //#endregion
 
   //#region styles
-  const scrollViewAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: animatedPOIListIndex.value,
-  }));
+  const scrollViewAnimatedStyle = useAnimatedStyle(
+    () => ({
+      opacity: animatedPOIListIndex.value,
+    }),
+    [animatedPOIListIndex]
+  );
   const scrollViewStyle = useMemo(
     () => [styles.scrollView, scrollViewAnimatedStyle],
     [scrollViewAnimatedStyle]

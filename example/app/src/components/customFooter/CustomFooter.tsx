@@ -37,7 +37,7 @@ const CustomFooterComponent = ({
     return {
       transform: [{ rotate: `${arrowRotate}rad` }],
     };
-  }, []);
+  }, [animatedIndex]);
   const arrowStyle = useMemo(
     () => [arrowAnimatedStyle, styles.arrow],
     [arrowAnimatedStyle]

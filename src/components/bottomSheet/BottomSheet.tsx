@@ -177,7 +177,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       return $modal
         ? _animatedContainerHeight.value - verticalInset
         : _animatedContainerHeight.value;
-    }, [$modal, topInset, bottomInset]);
+    }, [topInset, bottomInset, $modal, _animatedContainerHeight]);
     const animatedContainerOffset = useReactiveSharedValue(
       _providedContainerOffset ?? INITIAL_CONTAINER_OFFSET
     ) as Animated.SharedValue<Insets>;
@@ -193,7 +193,8 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       $modal
     );
     const animatedHighestSnapPoint = useDerivedValue(
-      () => animatedSnapPoints.value[animatedSnapPoints.value.length - 1]
+      () => animatedSnapPoints.value[animatedSnapPoints.value.length - 1],
+      [animatedSnapPoints]
     );
     const animatedClosedPosition = useDerivedValue(() => {
       let closedPosition = animatedContainerHeight.value;
@@ -203,9 +204,10 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       }
 
       return closedPosition;
-    }, [$modal, detached, bottomInset]);
+    }, [animatedContainerHeight, $modal, detached, bottomInset]);
     const animatedSheetHeight = useDerivedValue(
-      () => animatedContainerHeight.value - animatedHighestSnapPoint.value
+      () => animatedContainerHeight.value - animatedHighestSnapPoint.value,
+      [animatedContainerHeight, animatedHighestSnapPoint]
     );
     const animatedCurrentIndex = useReactiveSharedValue(
       animateOnMount ? -1 : _providedIndex
@@ -261,7 +263,14 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
         isHandleHeightCalculated &&
         isSnapPointsNormalized
       );
-    });
+    }, [
+      _providedContainerHeight,
+      _providedHandleHeight,
+      animatedContainerHeight,
+      animatedHandleHeight,
+      animatedSnapPoints,
+      handleComponent,
+    ]);
     const isInTemporaryPosition = useSharedValue(false);
     const isForcedClosing = useSharedValue(false);
 
@@ -386,7 +395,12 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       }
 
       return SCROLLABLE_STATE.LOCKED;
-    });
+    }, [
+      animatedAnimationState,
+      animatedKeyboardState,
+      animatedScrollableOverrideState,
+      animatedSheetState,
+    ]);
     // dynamic
     const animatedContentHeight = useDerivedValue(() => {
       const keyboardHeightInContainer = animatedKeyboardHeightInContainer.value;
@@ -500,7 +514,18 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       }
 
       return currentIndex;
-    }, [android_keyboardInputMode]);
+    }, [
+      android_keyboardInputMode,
+      animatedAnimationSource,
+      animatedAnimationState,
+      animatedContainerHeight,
+      animatedCurrentIndex,
+      animatedNextPositionIndex,
+      animatedPosition,
+      animatedSnapPoints,
+      isInTemporaryPosition,
+      isLayoutCalculated,
+    ]);
     //#endregion
 
     //#region private methods
@@ -1195,7 +1220,11 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
           configs: _providedAnimationConfigs,
         }),
       };
-    }, [animatedContentHeight, _providedContentHeight]);
+    }, [
+      _providedContentHeight,
+      animatedContentHeight,
+      _providedAnimationConfigs,
+    ]);
     const contentContainerStyle = useMemo(
       () => [styles.contentContainer, contentContainerAnimatedStyle],
       [contentContainerAnimatedStyle]
@@ -1214,7 +1243,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       return {
         paddingBottom: animatedContainerHeight.value,
       };
-    }, [detached]);
+    }, [animatedContainerHeight, detached]);
     const contentMaskContainerStyle = useMemo(
       () => [styles.contentMaskContainer, contentMaskContainerAnimatedStyle],
       [contentMaskContainerAnimatedStyle]

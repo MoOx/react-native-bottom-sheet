@@ -82,10 +82,13 @@ const BottomSheetContent = () => {
 
   const { animatedScrollableState } = useBottomSheetInternal();
 
-  const scrollableAnimatedProps = useAnimatedProps(() => ({
-    showsVerticalScrollIndicator:
-      animatedScrollableState.value === SCROLLABLE_STATE.UNLOCKED,
-  }));
+  const scrollableAnimatedProps = useAnimatedProps(
+    () => ({
+      showsVerticalScrollIndicator:
+        animatedScrollableState.value === SCROLLABLE_STATE.UNLOCKED,
+    }),
+    [animatedScrollableState]
+  );
 
   return (
     <BottomSheetScrollView
