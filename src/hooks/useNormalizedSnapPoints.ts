@@ -23,23 +23,25 @@ export const useNormalizedSnapPoints = (
   bottomInset: number,
   $modal: boolean
 ) => {
-  const normalizedSnapPoints = useDerivedValue(() =>
-    ('value' in providedSnapPoints
-      ? providedSnapPoints.value
-      : providedSnapPoints
-    ).map(snapPoint => {
-      if (containerHeight.value === INITIAL_CONTAINER_HEIGHT) {
-        return INITIAL_SNAP_POINT;
-      }
+  const normalizedSnapPoints = useDerivedValue(
+    () =>
+      ('value' in providedSnapPoints
+        ? providedSnapPoints.value
+        : providedSnapPoints
+      ).map(snapPoint => {
+        if (containerHeight.value === INITIAL_CONTAINER_HEIGHT) {
+          return INITIAL_SNAP_POINT;
+        }
 
-      return normalizeSnapPoint(
-        snapPoint,
-        containerHeight.value,
-        topInset,
-        bottomInset,
-        $modal
-      );
-    })
+        return normalizeSnapPoint(
+          snapPoint,
+          containerHeight.value,
+          topInset,
+          bottomInset,
+          $modal
+        );
+      }),
+    [$modal, bottomInset, containerHeight, providedSnapPoints, topInset]
   );
 
   return normalizedSnapPoints;

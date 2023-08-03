@@ -50,7 +50,7 @@ const Weather = ({ animatedIndex, animatedPosition }: WeatherProps) => {
         },
       ],
     }),
-    [lockedYPosition]
+    [animatedIndex, animatedPosition, lockedYPosition]
   );
   const containerStyle = useMemo(
     () => [

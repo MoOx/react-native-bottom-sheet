@@ -45,9 +45,12 @@ const App = () => {
   //#endregion
 
   //#region styles
-  const positionLineAnimatedStyle = useAnimatedStyle(() => ({
-    top: animatedPosition.value,
-  }));
+  const positionLineAnimatedStyle = useAnimatedStyle(
+    () => ({
+      top: animatedPosition.value,
+    }),
+    [animatedPosition]
+  );
   //#endregion
 
   //#region render

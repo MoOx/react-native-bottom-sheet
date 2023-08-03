@@ -26,7 +26,7 @@ const ReText = (props: TextProps) => {
         : _providedValue.value;
 
     return `${text}: ${value}`;
-  });
+  }, [_providedValue, text]);
 
   //region effects
   useAnimatedReaction(

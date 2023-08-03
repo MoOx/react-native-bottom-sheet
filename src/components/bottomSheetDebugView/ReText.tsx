@@ -15,18 +15,20 @@ const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 const ReText = (props: TextProps) => {
   const { text, value: _providedValue, style } = { style: {}, ...props };
-  const providedValue = useDerivedValue(() =>
-    typeof _providedValue === 'number'
-      ? _providedValue
-      : typeof _providedValue.value === 'number'
-      ? _providedValue.value.toFixed(2)
-      : _providedValue.value
+  const providedValue = useDerivedValue(
+    () =>
+      typeof _providedValue === 'number'
+        ? _providedValue
+        : typeof _providedValue.value === 'number'
+        ? _providedValue.value.toFixed(2)
+        : _providedValue.value,
+    [_providedValue]
   );
   const animatedProps = useAnimatedProps(() => {
     return {
       text: `${text}: ${providedValue.value}`,
     };
-  }, [providedValue]);
+  }, [providedValue, text]);
   return (
     <AnimatedTextInput
       underlineColorAndroid="transparent"
