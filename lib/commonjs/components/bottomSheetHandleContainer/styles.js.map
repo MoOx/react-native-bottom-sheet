@@ -1,0 +1,1 @@
+{"version":3,"names":["_reactNative","require","styles","StyleSheet","create","container","exports"],"sourceRoot":"../../../../src","sources":["components/bottomSheetHandleContainer/styles.ts"],"mappings":";;;;;;AAAA,IAAAA,YAAA,GAAAC,OAAA;AAEO,MAAMC,MAAM,GAAGC,uBAAU,CAACC,MAAM,CAAC;EACtCC,SAAS,EAAE,CAAC;AACd,CAAC,CAAC;AAACC,OAAA,CAAAJ,MAAA,GAAAA,MAAA"}
